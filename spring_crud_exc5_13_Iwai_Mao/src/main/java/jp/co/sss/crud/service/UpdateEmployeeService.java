@@ -38,17 +38,12 @@ public class UpdateEmployeeService {
 	 * @param employeeForm 更新する従業員情報を格納したフォームオブジェクト（従業員IDを含む必要があります）
 	 */
 
-	public void excecute(EmployeeForm employeeForm) {
+	public void execute(EmployeeForm employeeForm) {
 		Employee employee = new Employee();
-		//		Employee employee = repository.getReferenceById(empId);
-		//id以外をコピー（3つめの引数""は更新除外）
-		//		BeanUtils.copyProperties(employeeForm, employee, "empId");
+
 		employee = BeanManager.copyFormToEntity(employeeForm);
-		//更新
+		//更新（登録メソッドへ）
 		repository.save(employee);
-		//Entityの内容をJavaBeanにコピー
-		//		EmployeeBean employeeBean = new EmployeeBean();
-		//		BeanUtils.copyProperties(employee, employeeBean);
 
 	}
 }

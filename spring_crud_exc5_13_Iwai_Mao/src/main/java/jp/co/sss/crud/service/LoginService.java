@@ -51,8 +51,8 @@ public class LoginService {
 	public LoginResultBean execute(LoginForm loginForm) {
 		//入力されたidとpassを取得し、employeeに入れる処理
 		Employee employee = repository.findByEmpIdAndEmpPass(loginForm.getEmpId(), loginForm.getEmpPass());
-		//Employee型のemployeeで受け取る
 
+		//staticメソッドのためNEWなしで呼び出し
 		LoginResultBean loginResultBean;
 
 		if (employee == null) {

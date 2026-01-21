@@ -7,7 +7,13 @@
 </head>
 <body th:object="${userForm}" class="admin user_update_input_admin">
 	<h3>社員変更入力画面</h3>
-	
+	<!-- エラーメッセージの出力(入力チェック) -->
+		<p>
+			<span th:each="error:${#fields.detailedErrors()}"> 
+				<span th:text="${error.message}" class="error"></span><br />
+			</span>
+			<span th:text="${errMessage}" class="error"></span>
+		</p>
 	<div class="update">
 		<form th:action="@{/update/check}" method="post" th:object="${employeeForm}">
 	
@@ -15,6 +21,7 @@
 				<div class="label">パスワード：</div>
 				<div class="input required">
 					<input type="password" th:field="*{empPass}" />
+				<span th:errors="*{empPass}"></span><br>
 				</div>
 			</div>
 			
@@ -22,6 +29,7 @@
 				<div class="label">社員名：</div>
 				<div class="input required">
 					<input type="text" th:field="*{empName}" />
+				<span th:errors="*{empName}"></span><br>
 				</div>
 			</div>
 			
@@ -37,14 +45,14 @@
 				<div class="label">住所：</div>
 				<div class="input required">
 					<input type="text" th:field="*{address}" />
-				</div>
+				<span th:errors="*{address}"></span><br></div>
 			</div>
 			
 			<div class="form">
 				<div class="label">生年月日：(YYYY/MM/DD)</div>
 				<div class="input required">
 					<input type="text" th:field="*{birthday}" />
-				</div>
+				<span th:errors="*{birthday}"></span><br></div>
 			</div>
 
 			<div class="form">
