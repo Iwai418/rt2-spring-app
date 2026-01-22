@@ -39,7 +39,8 @@ public class IndexController {
 		LoginResultBean loginResultBean = loginService.execute(loginForm);
 
 		if (loginResultBean.isLogin()) {
-			sesson.setAttribute("loginUser", loginResultBean.getLoginUser());
+			//	loginUserというセッション属性名を付けて保存
+			sesson.setAttribute("loginUser", loginResultBean.getLoginUser());//(名前、情報、メソッド)
 			path = "redirect:/list";
 		} else {
 			model.addAttribute("errMessage", loginResultBean.getErrorMsg());

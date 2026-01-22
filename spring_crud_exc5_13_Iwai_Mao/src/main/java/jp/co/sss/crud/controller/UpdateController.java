@@ -63,7 +63,7 @@ public class UpdateController {
 	@RequestMapping(path = "/update/check", method = RequestMethod.POST)
 	//Formでの入力内容を＠ModelAttributeで画面に表示
 	public String checkUpdate(@Valid @ModelAttribute EmployeeForm employeeForm, BindingResult result) {
-		//入力内容のエラチェック
+		//入力内容のエラーチェック
 		if (result.hasErrors()) {
 			return "update/update_input";
 		}
