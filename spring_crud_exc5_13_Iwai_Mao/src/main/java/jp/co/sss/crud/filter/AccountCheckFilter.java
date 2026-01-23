@@ -42,18 +42,21 @@ public class AccountCheckFilter extends HttpFilter {
 			//ログインしていない場合、ログイン画面へリダイレクトさせる
 			if (loginUser == null) {
 				response.sendRedirect("/spring_crud");
-			} else if (loginUser.getAuthority() == 1) {
-				//権限が1（一般）の場合、ログインへリダイレクトさせる（登録・削除・変更不可）
-				(requestURL.contains("/input")
-				requestURL.contains("/update")
-				requestURL.contains("/delete"))){
+			} else if (loginUser.getAuthority() == 1 &&
+			//権限が1（一般）の場合、ログインへリダイレクトさせる（登録・削除・変更不可）
+					(requestURL.contains("/input") ||
+							requestURL.contains("/update") ||
+							requestURL.contains("/delete"))) {
 				response.sendRedirect("/spring_crud");
 				return;
-			} else {
+			} else
+
+			{
 				chain.doFilter(request, response);
 			}
 		}
-		}
+	}
+}
 
 //	①if分を使ってフィルターを適用するリンクを限定
 //②if分を使って①の中でフィルターを適用する人を限定
@@ -62,3 +65,5 @@ public class AccountCheckFilter extends HttpFilter {
 //     -3：EmployeeBean型の変数からゲッターを使って権限情報のフィールドの値を取得
 
 //一般権限の社員は、登録・削除・変更の処理不可→トップページにリダイレクトになるフィルターを作成
+
+//requestURL.contains("/login")を消したらログインできない→このクラスではAithority以外反映されないのでは？

@@ -2,17 +2,20 @@ package jp.co.sss.crud.form;
 
 import java.util.Date;
 
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public class EmployeeForm {
+	@Max(value = 99999)
 	/** 社員ID */
 	private Integer empId;
 	/** パスワード */
 	@NotBlank
-	@Size(max = 30)
+	@Pattern(regexp = "^[a-zA-Z0-9]{0,16}$")
 	private String empPass;
 
 	/** 社員名 */

@@ -1,6 +1,7 @@
 package jp.co.sss.crud.form;
 
 import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -8,7 +9,8 @@ import jakarta.validation.constraints.Pattern;
 public class LoginForm {
 	/** 社員ID */
 	@NotNull
-	@Max(value = 999)
+	@Max(value = 99999)
+	@Min(value = 1)
 	private Integer empId;
 
 	/** パスワード */
