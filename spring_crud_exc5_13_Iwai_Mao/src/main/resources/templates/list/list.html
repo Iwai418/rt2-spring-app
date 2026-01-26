@@ -8,10 +8,11 @@
 
 <body class="admin user_list">
 	<h3>社員一覧画面</h3>
-
-	<div class="regist_link">
-		<a th:href="@{/regist/input}">新規社員登録</a>
-	</div>
+	<th:block th:if="${session.loginUser.authority == 2}">
+		<div class="regist_link">
+			<a th:href="@{/regist/input}">新規社員登録</a>
+		</div>
+	</th:block>
 	<!--	該当社員が0名の場合-->
 	<th:block th:if="${#lists.isEmpty(employees)}">
 		<div class="message">
@@ -26,53 +27,67 @@
 		<tr>
 			<th>社員ID</th>
 			<th>社員名</th>
-			<!--			独自機能：管理者にのみ表示-->
-			<th th:if="${loginUser.authority == 2}" class="gender">性別</th>
-			<th th:if="${loginUser.authority == 2}" class="address">住所</th>
-			<th th:if="${loginUser.authority == 2}" class="birthday">生年月日</th>
 
+			<!--			独自機能：管理者のみに表示-->
+			<th:block th:if="${session.loginUser.authority == 2}">
+				<th class="gender">性別</th>
+				<th class="address">住所</th>
+				<th class="birthday">生年月日</th>
+				<th class="authority">権限</th>
+			</th:block>
 
-			<th class="authority">権限</th>
+			<!--全員に表示-->
 			<th class="deptName">部署名</th>
 
-			<!--			独自機能：管理者にのみ表示-->
-			<th th:if="${loginUser.authority == 2}" class="button">変更</th>
-			<th th:if="${loginUser.authority == 2}" class="button">削除</th>
+			<!--			独自機能：管理者のみに表示-->
+			<th:block th:if="${session.loginUser.authority == 2}">
+				<th class="button">変更</th>
+				<th class="button">削除</th>
+			</th:block>
 		</tr>
-
+		<!--		全員に表示-->
 		<tr th:each="employee: ${employees}">
 			<td th:text="${employee.empId}"></td>
 			<td th:text="${employee.empName}"></td>
+			<!--
+				th:switchとth:caseはJavaのswitch文の様に条件分岐を表現できる
+				この場合はgender=1の場合[男性]、gender=2の場合[女性]と表示される
+			-->
+			<!--			独自機能：管理者のみに表示-->
+			<th:block th:if="${session.loginUser.authority == 2}">
+				<td th:switch="${employee.gender}">
+					<span th:case="1">男性</span>
+					<span th:case="2">女性</span>
+					<span th:case="3">その他</span>
+				</td>
 
-			<!--			独自機能：管理者にのみ表示-->
-			<td th:if="${loginUser.authority == 2}" th:switch="${employee.gender}">
-				<span th:case="1">男性</span>
-				<span th:case="2">女性</span>
-				<span th:case="3">その他</span>
-			</td>
-			<td th:if="${loginUser.authority == 2}" th:text="${employee.address}">
-			</td>
-			<td th:if="${loginUser.authority == 2}" th:text="${#dates.format(employee.birthday, 'yyyy/MM/dd')}">
-			</td>
-			<td th:switch="${employee.authority}">
-				<span th:case="1">一般</span>
-				<span th:case="2">管理者</span>
-			</td>
+				<td th:text="${employee.address}"></td>
+				<td th:text="${#dates.format(employee.birthday, 'yyyy/MM/dd')}">
+				</td>
+				<td th:switch="${employee.authority}">
+					<span th:case="1">一般</span> <span th:case="2">管理者</span>
+				</td>
+			</th:block>
 
+			<!--				全員に表示-->
 			<td th:text="${employee.deptName}"></td>
-			<!--			独自機能として変更追記：管理者にのみ表示-->
-			<td th:if="${loginUser.authority == 2}">
-				<form method="get" th:action="@{/update/input}">
-					<input type="hidden" name="empId" th:value="${employee.empId}" />
-					<input type="submit" value="変更" />
-				</form>
-			</td>
-			<td th:if="${loginUser.authority == 2}">
-				<form method="get" th:action="@{/delete/check}">
-					<input type="hidden" name="empId" th:value="${employee.empId}" />
-					<input type="submit" value="削除" class="delete" />
-				</form>
-			</td>
+
+			<!--			独自機能：管理者のみに表示:更新-->
+			<th:block th:if="${session.loginUser.authority == 2}">
+				<td>
+					<form method="get" th:action="@{/update/input}">
+						<input type="hidden" name="empId" th:value="${employee.empId}" />
+						<input type="submit" value="変更" />
+					</form>
+				</td>
+				<!--			独自機能：管理者のみに表示:削除-->
+				<td>
+					<form method="get" th:action="@{/delete/check}">
+						<input type="hidden" name="empId" th:value="${employee.empId}" />
+						<input type="submit" value="削除" class="delete" />
+					</form>
+				</td>
+			</th:block>
 		</tr>
 	</table>
 </body>
