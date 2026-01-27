@@ -35,6 +35,9 @@ public class Employee {
 	@ManyToOne
 	@JoinColumn(name = "dept_id", referencedColumnName = "deptId")
 	private Department department;
+	@ManyToOne
+	@JoinColumn(name = "br_id")
+	private Branch branch;
 
 	/**
 	 * @return empId
@@ -146,6 +149,20 @@ public class Employee {
 	 */
 	public void setDepartment(Department department) {
 		this.department = department;
+	}
+
+	/**
+	 * @return branch
+	 */
+	public Branch getBranch() {
+		return branch;
+	}
+
+	/**
+	 * @param branch セットする branch
+	 */
+	public void setBranch(Branch branch) {
+		this.branch = branch;
 	}
 
 }

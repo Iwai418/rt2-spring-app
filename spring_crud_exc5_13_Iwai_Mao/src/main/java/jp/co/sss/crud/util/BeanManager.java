@@ -155,7 +155,7 @@ public class BeanManager {
 			employeeBean.setBirthday(employee.getBirthday());
 			employeeBean.setAuthority(employee.getAuthority());
 			employeeBean.setDeptId(employee.getDepartment().getDeptId());
-
+			employeeBean.setBrId(employee.getBranch().getBrId());
 			tempEmployeeBeans.add(employeeBean);
 
 		}

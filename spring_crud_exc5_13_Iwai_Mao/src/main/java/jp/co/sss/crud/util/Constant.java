@@ -10,4 +10,6 @@ public class Constant {
 	/** 部署IDの初期値 */
 	public static final Integer DEFAULT_DEPT_ID = 1;
 
+	/**支店IDの初期値*/
+	public static final Integer DEFAULT_BR_ID = 1;
 }

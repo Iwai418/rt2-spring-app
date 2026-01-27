@@ -39,6 +39,12 @@ public class EmployeeBean {
 	/** 部署名 */
 	private String deptName;
 
+	/**支店ID*/
+	private Integer brId;
+
+	/**支店名*/
+	private String brName;
+
 	/**
 	 * デフォルトコンストラクタ。
 	 * 全てのフィールドがnullまたはデフォルト値で初期化されます。
@@ -269,6 +275,34 @@ public class EmployeeBean {
 	public void setDeptName(String deptName) {
 
 		this.deptName = deptName;
+	}
+
+	/**
+	 * @return brId
+	 */
+	public Integer getBrId() {
+		return brId;
+	}
+
+	/**
+	 * @param brId セットする brId
+	 */
+	public void setBrId(Integer brId) {
+		this.brId = brId;
+	}
+
+	/**
+	 * @return brName
+	 */
+	public String getBrName() {
+		return brName;
+	}
+
+	/**
+	 * @param brName セットする brName
+	 */
+	public void setBrName(String brName) {
+		this.brName = brName;
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import jp.co.sss.crud.entity.Branch;
 import jp.co.sss.crud.entity.Department;
 import jp.co.sss.crud.entity.Employee;
 
@@ -26,4 +27,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
 	//②社員情報更新
 
+	//条件検索:支店による社員名検索
+	List<Employee> findByBranchOrderByEmpId(Branch branch);
 }
