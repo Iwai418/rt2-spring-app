@@ -102,7 +102,7 @@ public class ListController {
 		List<EmployeeBean> searchByBranchList = null;
 
 		//deptIdをServiceクラスへ
-		searchByBranchList = searchForEmployeesByDepartmentService.execute(brId);
+		searchByBranchList = searchForEmployeesByBranchService.execute(brId);
 
 		model.addAttribute("employees", searchByBranchList);
 		return "list/list";

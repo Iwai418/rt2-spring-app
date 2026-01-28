@@ -30,8 +30,7 @@ public class DeleteController {
 	 */
 	@RequestMapping(path = "/delete/check", method = RequestMethod.GET)
 	public String checkDelete(Integer empId, Model model) {
-
-		//SearchForEmployeesByEmpIdService完成後にコメントを外す
+		//delete画面に出てくるべき内容を取得（excecute）
 		model.addAttribute("employee", searchForEmployeesByEmpIdService.execute(empId));
 
 		return "delete/delete_check";
@@ -48,7 +47,6 @@ public class DeleteController {
 	public String completeDelete(Integer empId) {
 
 		//削除実施
-
 		deleteEmployeeService.execute(empId);
 		return "redirect:/delete/complete";
 	}

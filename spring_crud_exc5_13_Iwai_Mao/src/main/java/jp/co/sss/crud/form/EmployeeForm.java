@@ -41,6 +41,9 @@ public class EmployeeForm {
 
 	/** 部署ID */
 	private Integer deptId;
+	@NotNull
+	/** 支店ID */
+	private Integer brId;
 
 	/**
 	 * 社員IDの取得
@@ -192,5 +195,19 @@ public class EmployeeForm {
 	 */
 	public void setDeptId(Integer deptId) {
 		this.deptId = deptId;
+	}
+
+	/**
+	 * @return brId
+	 */
+	public Integer getBrId() {
+		return brId;
+	}
+
+	/**
+	 * @param brId セットする brId
+	 */
+	public void setBrId(Integer brId) {
+		this.brId = brId;
 	}
 }

@@ -1,6 +1,5 @@
 package jp.co.sss.crud.service;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,8 +41,8 @@ public class SearchForEmployeesByEmpIdService {
 		//主キー検索した内容をemployeeエンティティへ
 		Employee employee = repository.getReferenceById(empId);
 		EmployeeBean employeeBean = new EmployeeBean();
-		//EmployeeBeanにコピー
-		BeanUtils.copyProperties(employee, employeeBean);
+		//EmployeeBeanにEntityをコピー
+		//		BeanUtils.copyProperties(employee, employeeBean);
 		employeeBean = BeanManager.copyEntityToBean(employee);
 		return employeeBean;
 	}

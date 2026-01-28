@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout_4block :: layout(~{::body/content()})}">
+
 <head>
-<title>会員登録確認 | シェアードショップ</title>
-<meta charset="UTF-8" />
+	<title>会員登録確認 | シェアードショップ</title>
+	<meta charset="UTF-8" />
 </head>
+
 <body class="admin user_regist_check_admin">
 	<h3>社員登録確認画面</h3>
 	<div class="update">
@@ -41,6 +43,14 @@
 				<span th:case="1">営業部</span> <span th:case="2">経理部</span> <span th:case="3">総務部</span>
 			</div>
 		</div>
+		<div class="form">
+			<div class="label">支店名：</div>
+			<div class="input" th:switch="${employeeForm.brId}">
+				<span th:case="1">東京支店</span> <span th:case="2">大阪支店</span> <span th:case="3">愛知支店</span>
+				<span th:case="4">福岡支店</span> <span th:case="5">広島支店</span> <span th:case="6">北海道支店</span>
+				<span th:case="7">沖縄支店</span>
+			</div>
+		</div>
 		<form th:action="@{/regist/complete}" method="post" th:object="${employeeForm}" name="check">
 			<div class="form">
 				<div class="label"></div>
@@ -53,6 +63,7 @@
 					<input type="hidden" th:field="*{birthday}" />
 					<input type="hidden" th:field="*{authority}" />
 					<input type="hidden" th:field="*{deptId}" />
+					<input type="hidden" th:field="*{brId}" />
 					<input type="submit" value="登録" />
 				</div>
 			</div>
@@ -69,10 +80,12 @@
 					<input type="hidden" th:field="*{birthday}" />
 					<input type="hidden" th:field="*{authority}" />
 					<input type="hidden" th:field="*{deptId}" />
+					<input type="hidden" th:field="*{brId}" />
 					<input type="submit" value="戻る" />
 				</div>
 			</div>
 		</form>
 	</div>
 </body>
+
 </html>

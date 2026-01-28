@@ -36,7 +36,7 @@ public class Employee {
 	@JoinColumn(name = "dept_id", referencedColumnName = "deptId")
 	private Department department;
 	@ManyToOne
-	@JoinColumn(name = "br_id")
+	@JoinColumn(name = "br_id", referencedColumnName = "brId")
 	private Branch branch;
 
 	/**

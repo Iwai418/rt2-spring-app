@@ -35,9 +35,10 @@
 				<th class="birthday">生年月日</th>
 				<th class="authority">権限</th>
 			</th:block>
-
+			<!--ヘッダー-->
 			<!--全員に表示-->
 			<th class="deptName">部署名</th>
+			<th class="brName">支店名</th>
 
 			<!--			独自機能：管理者のみに表示-->
 			<th:block th:if="${session.loginUser.authority == 2}">
@@ -45,7 +46,8 @@
 				<th class="button">削除</th>
 			</th:block>
 		</tr>
-		<!--		全員に表示-->
+		<!--		全員に表示:従業員ID・名前-->
+		<!--		繰り返し文-->
 		<tr th:each="employee: ${employees}">
 			<td th:text="${employee.empId}"></td>
 			<td th:text="${employee.empName}"></td>
@@ -53,7 +55,7 @@
 				th:switchとth:caseはJavaのswitch文の様に条件分岐を表現できる
 				この場合はgender=1の場合[男性]、gender=2の場合[女性]と表示される
 			-->
-			<!--			独自機能：管理者のみに表示-->
+			<!--			独自機能：管理者のみに表示：性別・住所・生年月日・権限-->
 			<th:block th:if="${session.loginUser.authority == 2}">
 				<td th:switch="${employee.gender}">
 					<span th:case="1">男性</span>
@@ -65,12 +67,28 @@
 				<td th:text="${#dates.format(employee.birthday, 'yyyy/MM/dd')}">
 				</td>
 				<td th:switch="${employee.authority}">
-					<span th:case="1">一般</span> <span th:case="2">管理者</span>
+					<span th:case="1">一般</span>
+					<span th:case="2">管理者</span>
 				</td>
 			</th:block>
 
-			<!--				全員に表示-->
+			<!--			全員に表示:部署名、独自機能：支店名）-->
+			<!--			BeanManagerより情報持ってきている-->
 			<td th:text="${employee.deptName}"></td>
+
+			<td th:text="${employee.brName}"></td>
+
+			<!--数字で取得したい場合はbrId-->
+			<!--<td th:switch="${employee.brId}">-->
+			<!--<span th:case="1">東京支店</span>-->
+			<!--<span th:case="2">大阪支店</span>-->
+			<!--<span th:case="3">愛知支店</span>-->
+			<!--<span th:case="4">福岡支店</span>-->
+			<!--<span th:case="5">広島支店</span>-->
+			<!--<span th:case="6">北海道支店</span>-->
+			<!--<span th:case="7">沖縄支店</span>-->
+			<!--</td>-->
+
 
 			<!--			独自機能：管理者のみに表示:更新-->
 			<th:block th:if="${session.loginUser.authority == 2}">

@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import jp.co.sss.crud.bean.EmployeeBean;
+import jp.co.sss.crud.entity.Branch;
 import jp.co.sss.crud.entity.Department;
 import jp.co.sss.crud.entity.Employee;
 import jp.co.sss.crud.form.EmployeeForm;
@@ -94,12 +95,19 @@ public class BeanManager {
 			e.printStackTrace();
 		}
 		employee.setBirthday(formatDate);
+
 		employee.setAuthority(form.getAuthority());
+
 		//Departmentオブジェクトを作成しFormが持つDeptId情報をセット
 		Department department = new Department();
 		department.setDeptId(form.getDeptId());
 		//DeptId情報を持つDepartmentをemployeeへ
 		employee.setDepartment(department);
+
+		//Branchオブジェクトを生成しFormが持つBrId情報をセット
+		Branch branch = new Branch();
+		branch.setBrId(form.getBrId());
+		employee.setBranch(branch);
 
 		return employee;
 
@@ -175,6 +183,7 @@ public class BeanManager {
 		employeeBean.setBirthday(employee.getBirthday());
 		employeeBean.setAuthority(employee.getAuthority());
 		employeeBean.setDeptId(employee.getDepartment().getDeptId());
+		employeeBean.setBrId(employee.getBranch().getBrId());
 
 		return employeeBean;
 	}

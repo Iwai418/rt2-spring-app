@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * 従業員情報を管理するJavaBeanクラス。
- * 従業員の基本情報（ID、パスワード、名前、性別、住所、誕生日、権限、部署情報）を保持します。
+ * 従業員の基本情報（ID、パスワード、名前、性別、住所、誕生日、権限、部署情報、独自機能：支店情報）を保持します。
  * 
  * @author システム開発チーム
  * @version 1.0
@@ -21,7 +21,7 @@ public class EmployeeBean {
 	/** 従業員名 */
 	private String empName;
 
-	/** 性別（1:男性、2:女性） */
+	/** 性別（1:男性、2:女性,3:独自機能：その他） */
 	private Integer gender;
 
 	/** 住所 */
@@ -66,7 +66,7 @@ public class EmployeeBean {
 	 * @param deptId 部署ID（1:営業部、2:経理部、3:総務部）
 	 */
 	public EmployeeBean(Integer empId, String empPass, String empName, Integer gender, String address, Date birthday,
-			Integer authority, Integer deptId) {
+			Integer authority, Integer deptId, Integer brId) {
 		this.empId = empId;
 		this.empPass = empPass;
 		this.empName = empName;
@@ -75,6 +75,7 @@ public class EmployeeBean {
 		this.birthday = birthday;
 		this.authority = authority;
 		this.deptId = deptId;
+		this.brId = brId;
 
 		switch (deptId) {
 		case 1:
@@ -91,7 +92,33 @@ public class EmployeeBean {
 		default:
 			break;
 		}
+		switch (brId) {
+		case 1:
+			this.brName = "東京支店";
+			break;
+		case 2:
+			this.brName = "大阪支店";
+			break;
+		case 3:
+			this.brName = "愛知支店";
+			break;
+		case 4:
+			this.brName = "福岡支店";
+			break;
+		case 5:
+			this.brName = "広島支店";
+			break;
+		case 6:
+			this.brName = "北海道支店";
+			break;
+		case 7:
+			this.brName = "沖縄支店";
+			break;
 
+		default:
+			this.brName = "その他";
+			break;
+		}
 	}
 
 	/**
@@ -285,14 +312,54 @@ public class EmployeeBean {
 	}
 
 	/**
-	 * @param brId セットする brId
+	 * 支店IDを設定します。
+	 * 支店IDに基づいて部署名も自動的に設定されます。
+	 * 
+	 * @param brId 支店ID（1:東京支店、2:大阪支店、3:愛知支店、4:福岡支店、5:広島支店、6:北海道支店、7:沖縄支店）
 	 */
 	public void setBrId(Integer brId) {
 		this.brId = brId;
+
+		switch (brId) {
+		case 1:
+			this.brName = "東京支店";
+			break;
+		case 2:
+			this.brName = "大阪支店";
+
+			break;
+		case 3:
+			this.brName = "愛知支店";
+
+			break;
+		case 4:
+			this.brName = "福岡支店";
+
+			break;
+		case 5:
+			this.brName = "広島支店";
+
+			break;
+		case 6:
+			this.brName = "北海道支店";
+
+			break;
+		case 7:
+			this.brName = "沖縄支店";
+
+			break;
+
+		default:
+			this.brName = "その他";
+			break;
+		}
+
 	}
 
 	/**
-	 * @return brName
+	 * 支店名を取得します。
+	 * 
+	 * @return 支店名
 	 */
 	public String getBrName() {
 		return brName;

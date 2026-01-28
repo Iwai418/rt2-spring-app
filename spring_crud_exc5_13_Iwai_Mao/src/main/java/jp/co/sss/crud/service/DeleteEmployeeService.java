@@ -24,7 +24,7 @@ public class DeleteEmployeeService {
 	EmployeeRepository repository;
 
 	/**
-	 * 指定された従業員IDの従業員情報を削除メソッド。
+	 * 指定された従業員IDの従業員情報を削除するメソッド。
 	 * データベースから該当する従業員レコードを物理削除します。
 	 * 
 	 * @param forDeleteEmpId 削除対象の従業員ID

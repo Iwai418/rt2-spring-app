@@ -37,7 +37,9 @@ public class UpdateController {
 	 * @throws ParseException 
 	 */
 	@RequestMapping(path = "/update/input", method = RequestMethod.GET)
-	//inputUpdateで一覧から入力画面へ
+	//Update/inputで一覧から入力画面へ
+	//@ModelAttributeを使うためのインターフェイス=model
+	//@ModelAttributeを書くことでemployeeFormの名前でスコープに保存
 	public String inputUpdate(Integer empId, @ModelAttribute EmployeeForm employeeForm, Model model) {
 
 		EmployeeBean employee = null;

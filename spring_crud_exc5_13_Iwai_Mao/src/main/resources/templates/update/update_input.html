@@ -1,38 +1,39 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-    th:replace="~{common/layout_4block :: layout(~{::body/content()})}">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout_4block :: layout(~{::body/content()})}">
+
 <head>
-<title>会員変更入力 | シェアードショップ</title>
-<meta charset="UTF-8" />
+	<title>会員変更入力 | シェアードショップ</title>
+	<meta charset="UTF-8" />
 </head>
+
 <body th:object="${userForm}" class="admin user_update_input_admin">
 	<h3>社員変更入力画面</h3>
 	<!-- エラーメッセージの出力(入力チェック) -->
-		<p>
-			<span th:each="error:${#fields.detailedErrors()}"> 
-				<span th:text="${error.message}" class="error"></span><br />
-			</span>
-			<span th:text="${errMessage}" class="error"></span>
-		</p>
+	<p>
+		<span th:each="error:${#fields.detailedErrors()}">
+			<span th:text="${error.message}" class="error"></span><br />
+		</span>
+		<span th:text="${errMessage}" class="error"></span>
+	</p>
 	<div class="update">
 		<form th:action="@{/update/check}" method="post" th:object="${employeeForm}">
-	
+
 			<div class="form">
 				<div class="label">パスワード：</div>
 				<div class="input required">
 					<input type="password" th:field="*{empPass}" />
-				<span th:errors="*{empPass}"></span><br>
+					<span th:errors="*{empPass}"></span><br>
 				</div>
 			</div>
-			
+
 			<div class="form">
 				<div class="label">社員名：</div>
 				<div class="input required">
 					<input type="text" th:field="*{empName}" />
-				<span th:errors="*{empName}"></span><br>
+					<span th:errors="*{empName}"></span><br>
 				</div>
 			</div>
-			
+
 			<div class="form">
 				<div class="label">性別：</div>
 				<div class="input">
@@ -41,19 +42,21 @@
 					<input type="radio" th:field="*{gender}" value="3" />その他
 				</div>
 			</div>
-			
+
 			<div class="form">
 				<div class="label">住所：</div>
 				<div class="input required">
 					<input type="text" th:field="*{address}" />
-				<span th:errors="*{address}"></span><br></div>
+					<span th:errors="*{address}"></span><br>
+				</div>
 			</div>
-			
+
 			<div class="form">
 				<div class="label">生年月日：(YYYY/MM/DD)</div>
 				<div class="input required">
 					<input type="text" th:field="*{birthday}" />
-				<span th:errors="*{birthday}"></span><br></div>
+					<span th:errors="*{birthday}"></span><br>
+				</div>
 			</div>
 
 			<div class="form">
@@ -63,7 +66,7 @@
 					<input type="radio" th:field="*{authority}" value="2" />管理者
 				</div>
 			</div>
-	
+
 			<div class="form">
 				<div class="label">部署名：</div>
 				<div class="input">
@@ -73,8 +76,21 @@
 						<option value="3">総務部</option>
 					</select>
 				</div>
-	        </div>
-	        
+			</div>
+			<div class="form">
+				<div class="label">支店名：</div>
+				<div class="input">
+					<select th:field="*{brId}">
+						<option value="1">東京支店</option>
+						<option value="2">大阪支店</option>
+						<option value="3">愛知支店</option>
+						<option value="4">福岡支店</option>
+						<option value="5">広島支店</option>
+						<option value="6">北海道支店</option>
+						<option value="7">沖縄店</option>
+					</select>
+				</div>
+			</div>
 			<div class="form">
 				<div class="label"></div>
 				<div class="input">
@@ -83,7 +99,7 @@
 				</div>
 			</div>
 		</form>
-	
+
 		<form th:action="@{/list}" name="back">
 			<div class="form">
 				<div class="label"></div>
@@ -94,4 +110,5 @@
 		</form>
 	</div>
 </body>
+
 </html>
